@@ -1,3 +1,7 @@
+import { useEffect } from "react";
+import { useState } from "react";
+import genreids from "../assets/genre";
+
 function WatchList() {
   const [genreList, setGenreList] = useState([]);
   const [currGenre, setCurrGenre] = useState("All Genres");
@@ -40,6 +44,7 @@ function WatchList() {
         {genreList.map((genre) => {
           return (
             <div
+              key={genre}
               onClick={() => handleFilter(genre)}
               // setup styling for genre tags conditionally
               className={
@@ -71,12 +76,12 @@ function WatchList() {
               <div className="flex">
                 <i
                   onClick={handleAscnedingRatings}
-                  class="fa-solid fa-arrow-up"
+                  className="fa-solid fa-arrow-up"
                 ></i>
                 <div>Ratings</div>
                 <i
                   onClick={handleDescendingRatings}
-                  class="fa-solid fa-arrow-down"
+                  className="fa-solid fa-arrow-down"
                 ></i>
               </div>
             </th>
@@ -107,7 +112,7 @@ function WatchList() {
               </td>
               <td className="pl-6 py-4">{movie.vote_average}</td>
               <td className="pl-6 py-4">{movie.popularity}</td>
-              <td className="pl-2 py-4">{genreids[movieObj.genre_ids[0]]}</td>
+              <td className="pl-2 py-4">{genreids[movie.genre_ids[0]]}</td>
               <td
                 onClick={() => removeFromWatchList(movie)}
                 className="text-red-500"
